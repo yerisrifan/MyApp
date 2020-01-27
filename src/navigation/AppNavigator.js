@@ -1,15 +1,17 @@
 import React from 'react';
 import {createAppContainer, SafeAreaView} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
 import {
   BottomNavigation,
   BottomNavigationTab,
   Icon,
 } from '@ui-kitten/components';
-import HomeScreen from '../screens/HomeScreen';
-import SearchScreen from '../screens/SearchScreen';
-import PlayListScreen from '../screens/PlayListScreen';
-import ManageScreen from '../screens/ManageScreen';
+import StackHome from './StackHome';
+import StackAlbum from './StackAlbum';
+import StackPlaylist from './StackPlaylist';
+import StackProfile from './StackProfile';
+import Player from '../screens/Player/Player';
 
 const TabBarComponent = ({navigation}) => {
   const onSelect = index => {
@@ -23,7 +25,7 @@ const TabBarComponent = ({navigation}) => {
   const PlaylistIcon = style => <Icon {...style} name="headphones-outline" />;
   const User = style => <Icon {...style} name="menu-2-outline" />;
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: '#181a2c'}}>
       <BottomNavigation
         selectedIndex={navigation.state.index}
         onSelect={onSelect}>
@@ -38,14 +40,29 @@ const TabBarComponent = ({navigation}) => {
 
 const TabNavigator = createBottomTabNavigator(
   {
-    HomeScreen,
-    SearchScreen,
-    PlayListScreen,
-    ManageScreen,
+    StackHome,
+    StackAlbum,
+    StackPlaylist,
+    StackProfile,
   },
   {
     tabBarComponent: TabBarComponent,
   },
 );
 
-export const AppNavigator = createAppContainer(TabNavigator);
+const StackNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: TabNavigator,
+    },
+    Player: {
+      screen: Player,
+    },
+  },
+  {
+    headerMode: 'none',
+    mode: 'modal',
+  },
+);
+
+export const AppNavigator = createAppContainer(StackNavigator);

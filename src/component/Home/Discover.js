@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {ScrollView, Image, StyleSheet} from 'react-native';
+import React, {Component} from 'react';
+import {ScrollView, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Layout, Text, Card} from '@ui-kitten/components';
 
 const DiscoverData = [
@@ -52,29 +52,35 @@ const DiscoverData = [
     thumbnailUrl: 'https://via.placeholder.com/150/56a8c2',
   },
 ];
-const Discover = props => {
-  return (
-    <Layout style={styles.cardContainer}>
-      <Text style={styles.cardH1}>{props.title}</Text>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {DiscoverData.map((item, index) => {
-          return (
-            <Layout key={index} style={styles.cardSingle}>
-              <Image
-                style={styles.cardPoster}
-                source={{
-                  uri: item.thumbnailUrl,
-                }}
-              />
-              <Text style={styles.cardTitle}>{item.title}</Text>
-              <Text style={styles.cardArtist}>{item.artist}</Text>
-            </Layout>
-          );
-        })}
-      </ScrollView>
-    </Layout>
-  );
-};
+class Discover extends Component {
+  render() {
+    return (
+      <Layout style={styles.cardContainer}>
+        <Text style={styles.cardH1}>{this.props.title}</Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {DiscoverData.map((item, index) => {
+            return (
+              <TouchableOpacity
+                key={index}
+                onPress={() => this.props.navigation.navigate('Detail')}>
+                <Layout style={styles.cardSingle}>
+                  <Image
+                    style={styles.cardPoster}
+                    source={{
+                      uri: item.thumbnailUrl,
+                    }}
+                  />
+                  <Text style={styles.cardTitle}>{item.title}</Text>
+                  <Text style={styles.cardArtist}>{item.artist}</Text>
+                </Layout>
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
+      </Layout>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   cardContainer: {

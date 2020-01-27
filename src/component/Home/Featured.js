@@ -97,6 +97,7 @@ const Featured = () => {
           marginHorizontal: 8,
         }}
         carouselRef={_sliderRef}
+        activeDotIndex={1}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
         inactiveDotColor={'rgba(255, 255, 255, 0.92)'}

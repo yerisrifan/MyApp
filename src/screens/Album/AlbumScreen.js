@@ -1,13 +1,13 @@
 import React from 'react';
 import {Layout, Text} from '@ui-kitten/components';
-import {styles} from '../constant';
+import {styles} from '../../constant';
 
-const ManageScreen = () => {
+const SearchScreen = () => {
   return (
     <Layout style={styles.container}>
-      <Text>User</Text>
+      <Text>Search</Text>
     </Layout>
   );
 };
 
-export default ManageScreen;
+export default SearchScreen;

@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#181a2c',
-    color: 'red',
   },
   headerNav: {
     fontFamily: 'Montserrat-Bold',

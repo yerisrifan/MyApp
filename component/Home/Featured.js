@@ -1,6 +1,7 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet} from 'react-native';
+import {Image, ScrollView, View, StyleSheet, Dimensions} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
+import Carousel, {ParallaxImage, Pagination} from 'react-native-snap-carousel';
 
 const Featured = () => {
   const DiscoverData = [
@@ -53,12 +54,54 @@ const Featured = () => {
       thumbnailUrl: 'https://via.placeholder.com/150/56a8c2',
     },
   ];
+
+  const {width: screenWidth} = Dimensions.get('window');
+
+  const _renderItem = ({item, index}, parallaxProps) => {
+    return (
+      <View style={{width: screenWidth - 60, height: screenWidth - 150}}>
+        <ParallaxImage
+          source={{uri: item.url}}
+          containerStyle={{
+            flex: 1,
+            marginBottom: Platform.select({ios: 0, android: 1}), // Prevent a random Android rendering issue
+            backgroundColor: 'white',
+            borderRadius: 20,
+          }}
+          style={styles.featuredPoster}
+          parallaxFactor={0.4}
+          {...parallaxProps}
+        />
+      </View>
+    );
+  };
+  let _sliderRef = '';
   return (
     <Layout style={styles.container}>
       <Text style={styles.heading}>Featured</Text>
-      <Image
-        style={styles.featuredPoster}
-        source={{uri: 'https://via.placeholder.com/600/92c952'}}
+      <Carousel
+        ref={c => (_sliderRef = c)}
+        sliderWidth={screenWidth}
+        sliderHeight={screenWidth}
+        itemWidth={screenWidth - 60}
+        data={DiscoverData}
+        renderItem={_renderItem}
+        hasParallaxImages={true}
+      />
+      <Pagination
+        containerStyle={{paddingVertical: 8}}
+        dotStyle={{
+          width: 8,
+          height: 8,
+          borderRadius: 4,
+          marginHorizontal: 8,
+        }}
+        carouselRef={_sliderRef}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+        inactiveDotColor={'rgba(255, 255, 255, 0.92)'}
+        dotColor={'rgba(255, 255, 255, 0.92)'}
+        dotsLength={DiscoverData.length}
       />
     </Layout>
   );
@@ -74,9 +117,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   featuredPoster: {
-    flexDirection: 'row',
-    borderRadius: 20,
-    height: 200,
+    ...StyleSheet.absoluteFillObject,
+    resizeMode: 'cover',
   },
 });
 export default Featured;

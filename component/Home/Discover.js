@@ -56,7 +56,7 @@ const Discover = props => {
   return (
     <Layout style={styles.cardContainer}>
       <Text style={styles.cardH1}>{props.title}</Text>
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {DiscoverData.map((item, index) => {
           return (
             <Layout key={index} style={styles.cardSingle}>

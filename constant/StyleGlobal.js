@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#181a2c',
     color: 'red',
   },
+  headerNav: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 25,
+  },
   searchContainer: {
     paddingTop: 10,
     paddingHorizontal: 30,

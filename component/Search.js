@@ -8,7 +8,7 @@ const Search = () => {
   return (
     <Input
       icon={IconSearch}
-      size="small"
+      size="medium"
       style={styles.searchContainer}
       placeholder="Search here"
     />

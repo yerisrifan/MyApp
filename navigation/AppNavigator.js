@@ -27,7 +27,7 @@ const TabBarComponent = ({navigation}) => {
       <BottomNavigation
         selectedIndex={navigation.state.index}
         onSelect={onSelect}>
-        <BottomNavigationTab title="Home" icon={HomeIcon} />
+        <BottomNavigationTab title="Discover" icon={HomeIcon} />
         <BottomNavigationTab title="Album" icon={SearchIcon} />
         <BottomNavigationTab title="Playlist" icon={PlaylistIcon} />
         <BottomNavigationTab title="Profile" icon={User} />

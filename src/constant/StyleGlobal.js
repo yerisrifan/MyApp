@@ -10,9 +10,17 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Bold',
     fontSize: 25,
   },
+  seacrh: {
+    marginEnd: -1,
+  },
   searchContainer: {
-    paddingTop: 10,
-    paddingHorizontal: 30,
+    borderTopColor: '#181a2c',
+    borderBottomColor: '#181a2c',
+    backgroundColor: '#181a2c',
+    borderRadius: 20,
+  },
+  searchInputContainer: {
+    backgroundColor: '#1b2136',
     borderRadius: 20,
   },
 });

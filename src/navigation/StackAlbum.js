@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import AlbumScreen from '../screens/Album/AlbumScreen';
+import AlbumScreen from '../screens/Search/SearchSreen';
 
 export default createStackNavigator(
   {

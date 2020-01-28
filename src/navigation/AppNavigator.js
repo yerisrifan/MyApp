@@ -12,6 +12,7 @@ import StackAlbum from './StackAlbum';
 import StackPlaylist from './StackPlaylist';
 import StackProfile from './StackProfile';
 import Player from '../screens/Player/Player';
+import MiniPlayer from '../screens/Player/MiniPlayer';
 
 const TabBarComponent = ({navigation}) => {
   const onSelect = index => {
@@ -26,11 +27,12 @@ const TabBarComponent = ({navigation}) => {
   const User = style => <Icon {...style} name="menu-2-outline" />;
   return (
     <SafeAreaView style={{backgroundColor: '#181a2c'}}>
+      <MiniPlayer />
       <BottomNavigation
         selectedIndex={navigation.state.index}
         onSelect={onSelect}>
         <BottomNavigationTab title="Discover" icon={HomeIcon} />
-        <BottomNavigationTab title="Album" icon={SearchIcon} />
+        <BottomNavigationTab title="Search" icon={SearchIcon} />
         <BottomNavigationTab title="Playlist" icon={PlaylistIcon} />
         <BottomNavigationTab title="Profile" icon={User} />
       </BottomNavigation>

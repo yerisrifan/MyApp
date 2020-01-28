@@ -78,7 +78,7 @@ const Featured = () => {
   let _sliderRef = '';
   return (
     <Layout style={styles.container}>
-      <Text style={styles.heading}>Featured</Text>
+      <Text style={styles.heading}>My Playlist</Text>
       <Carousel
         ref={c => (_sliderRef = c)}
         sliderWidth={screenWidth}

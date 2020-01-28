@@ -5,14 +5,7 @@ import {Input, Icon} from '@ui-kitten/components';
 const Search = () => {
   const IconSearch = style => <Icon {...style} name="search-outline" />;
 
-  return (
-    <Input
-      icon={IconSearch}
-      size="medium"
-      style={styles.searchContainer}
-      placeholder="Search here"
-    />
-  );
+  return <Input icon={IconSearch} size="medium" placeholder="Search here" />;
 };
 
 export default Search;

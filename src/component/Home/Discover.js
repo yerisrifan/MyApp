@@ -62,7 +62,7 @@ class Discover extends Component {
             return (
               <TouchableOpacity
                 key={index}
-                onPress={() => this.props.navigation.navigate('Detail')}>
+                onPress={() => this.props.navigation.navigate('Home')}>
                 <Layout style={styles.cardSingle}>
                   <Image
                     style={styles.cardPoster}

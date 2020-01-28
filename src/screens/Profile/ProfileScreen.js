@@ -1,9 +1,10 @@
 import React from 'react';
+import {withNavigation} from 'react-navigation';
 import {Layout, Text, Button} from '@ui-kitten/components';
 import {SafeAreaView, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {styles} from '../../constant';
 
-const ManageScreen = () => {
+const ManageScreen = props => {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
   return (
     <SafeAreaView style={styles.container}>
@@ -13,11 +14,15 @@ const ManageScreen = () => {
             style={style.avatar}
             source={{
               uri:
-                'https://expo-netflix.calebnance.now.sh/static/media/purple-penguin.622a496f.jpg',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx4q1qA61wpV5hGLQLAbJA1bxghWskKC-QDmIps0ytiRmwQZ7rRw&s',
             }}
           />
-          <Text>Susi Susanti</Text>
-          <Button size="medium" appearance="outline">
+          <Text style={style.profileName}>Susi Susanti</Text>
+          <Button
+            onPress={() => props.navigation.navigate('Manage')}
+            style={style.btn}
+            size="medium"
+            appearance="outline">
             Manage Profile
           </Button>
         </Layout>
@@ -34,7 +39,12 @@ const ManageScreen = () => {
           <TouchableOpacity style={style.textContainer}>
             <Text style={style.textMenu}>Help</Text>
           </TouchableOpacity>
-          <Text style={style.textMenu}>Version 0.1</Text>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('Auth')}
+            style={style.textContainer}>
+            <Text style={style.textMenu}>SignOut</Text>
+          </TouchableOpacity>
+          <Text style={style.version}>Version 0.1</Text>
         </Layout>
       </Layout>
     </SafeAreaView>
@@ -44,27 +54,44 @@ const ManageScreen = () => {
 const style = StyleSheet.create({
   containerProfile: {
     alignItems: 'center',
+    marginVertical: 70,
   },
   avatar: {
     width: 150,
     height: 150,
     borderRadius: 100,
+    marginBottom: 20,
+    backgroundColor: '#1b2136',
+  },
+  profileName: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  btn: {
+    borderRadius: 20,
   },
   containerMenu: {
-    marginTop: 50,
+    marginTop: 10,
     paddingHorizontal: 20,
   },
   textContainer: {
-    marginBottom: 10,
+    marginBottom: 15,
     borderStyle: 'solid',
     borderBottomColor: '#1b2136',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
   },
   textMenu: {
-    marginBottom: 10,
+    marginBottom: 15,
     fontFamily: 'Montserrat-Bold',
     fontWeight: '500',
     fontSize: 16,
   },
+  version: {
+    marginBottom: 15,
+    fontFamily: 'Montserrat-Bold',
+    fontWeight: '100',
+    fontSize: 12,
+  },
 });
-export default ManageScreen;
+export default withNavigation(ManageScreen);

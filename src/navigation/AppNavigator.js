@@ -13,6 +13,8 @@ import StackPlaylist from './StackPlaylist';
 import StackProfile from './StackProfile';
 import Player from '../screens/Player/Player';
 import MiniPlayer from '../screens/Player/MiniPlayer';
+import ProfileManage from '../screens/Profile/ProfileManage';
+import Auth from '../screens/Auth/Auth';
 
 const TabBarComponent = ({navigation}) => {
   const onSelect = index => {
@@ -59,6 +61,12 @@ const StackNavigator = createStackNavigator(
     },
     Player: {
       screen: Player,
+    },
+    Manage: {
+      screen: ProfileManage,
+    },
+    Auth: {
+      screen: Auth,
     },
   },
   {

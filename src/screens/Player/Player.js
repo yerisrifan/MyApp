@@ -6,13 +6,20 @@ import {
   Text,
   Layout,
 } from '@ui-kitten/components';
+import {connect} from 'react-redux';
+import {withNavigation} from 'react-navigation';
 import {styles} from '../../constant';
 import {SafeAreaView, StyleSheet, Image} from 'react-native';
 import Control from './Control';
 import Slider from '@react-native-community/slider';
 import Video from 'react-native-video';
+import {playNow, getAudioData, setAudio, changeNow} from '../../action';
 
-export default class Player extends Component {
+class Player extends Component {
+  handlePause = () => {
+    this.props.pause(!this.props.isPaused);
+  };
+
   render() {
     const BackIcon = style => (
       <Icon {...style} name="arrow-ios-downward-outline" />
@@ -23,21 +30,31 @@ export default class Player extends Component {
         icon={BackIcon}
       />
     );
+
+    const title = this.props.navigation.getParam('title');
+    const author = this.props.navigation.getParam('author');
+    const video_thumbnail = this.props.navigation.getParam('video_thumbnail');
+
     return (
       <SafeAreaView style={styles.container}>
         <TopNavigation rightControls={BackAction()} />
         <Layout style={style.containerMain}>
           <Layout style={style.containerHeader}>
-            <Text style={style.title}>BlackSwan</Text>
-            <Text style={style.artist}>BTS</Text>
+            <Text style={style.title}>
+              {title || this.props.audioData.title}
+            </Text>
+            <Text style={style.artist}>
+              {author || this.props.audioData.author}
+            </Text>
           </Layout>
           <Layout style={style.containerImage}>
             <Image
               style={style.poster}
-              source={{uri: 'https://via.placeholder.com/600/92c952'}}
+              source={{uri: video_thumbnail || this.props.audioData.poster}}
             />
           </Layout>
           <Layout>
+            <Text></Text>
             <Slider />
             <Control />
           </Layout>
@@ -80,3 +97,26 @@ const style = StyleSheet.create({
     borderRadius: 200,
   },
 });
+
+const mapStateToProps = state => {
+  //console.log(state);
+  return {
+    isPaused: state.isPaused,
+    isLoading: state.isLoading,
+    selectedId: state.selectedId,
+    audioData: state.audioData,
+    isChanging: state.isChanging,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    pause: val => dispatch(playNow(val)),
+    change: val => dispatch(changeNow(val)),
+    setAudio: val => dispatch(setAudio(val)),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withNavigation(Player));

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Layout, Text, Card} from '@ui-kitten/components';
+import axios from 'axios';
 
 const DiscoverData = [
   {
@@ -53,29 +54,55 @@ const DiscoverData = [
   },
 ];
 class Discover extends Component {
+  constructor() {
+    super();
+    this.state = {
+      audioData: [],
+    };
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+  getData = async () => {
+    const willSearch = this.props.data;
+    if (willSearch) {
+      const base = 'https://app-backendyt1991.herokuapp.com/search/';
+      const get = await axios.get(base + willSearch);
+      this.setState({
+        audioData: get.data.items,
+      });
+    }
+  };
+
   render() {
     return (
       <Layout style={styles.cardContainer}>
         <Text style={styles.cardH1}>{this.props.title}</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {DiscoverData.map((item, index) => {
-            return (
-              <TouchableOpacity
-                key={index}
-                onPress={() => this.props.navigation.navigate('Home')}>
-                <Layout style={styles.cardSingle}>
-                  <Image
-                    style={styles.cardPoster}
-                    source={{
-                      uri: item.thumbnailUrl,
-                    }}
-                  />
-                  <Text style={styles.cardTitle}>{item.title}</Text>
-                  <Text style={styles.cardArtist}>{item.artist}</Text>
-                </Layout>
-              </TouchableOpacity>
-            );
-          })}
+          {this.state.audioData &&
+            this.state.audioData.map((item, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() =>
+                    this.props.navigation.navigate('Detail', {
+                      videoId: item.id.videoId,
+                    })
+                  }>
+                  <Layout style={styles.cardSingle}>
+                    <Image
+                      style={styles.cardPoster}
+                      source={{
+                        uri: item.snippet.thumbnails.medium.url,
+                      }}
+                    />
+                    <Text style={styles.cardTitle}>{item.snippet.title}</Text>
+                    <Text style={styles.cardArtist}>{item.artist}</Text>
+                  </Layout>
+                </TouchableOpacity>
+              );
+            })}
         </ScrollView>
       </Layout>
     );

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {TopNavigation, Icon, TopNavigationAction} from '@ui-kitten/components';
 import {StatusBar, SafeAreaView, ScrollView} from 'react-native';
 import {styles} from '../../constant';
 import Discover from '../../component/Home/Discover';
@@ -12,11 +11,27 @@ class HomeScreen extends Component {
         <StatusBar barStyle="light-content" />
         <ScrollView>
           <Header title="Discover" />
-          <Featured />
-          <Discover title="Discover" navigation={this.props.navigation} />
-          <Discover title="Trending" navigation={this.props.navigation} />
-          <Discover title="Trending" navigation={this.props.navigation} />
-          <Discover title="Trending" navigation={this.props.navigation} />
+          {/* <Featured /> */}
+          <Discover
+            title="Discover"
+            data={'BTS'}
+            navigation={this.props.navigation}
+          />
+          <Discover
+            title="Trending"
+            data={'khalid basalamah terbaru'}
+            navigation={this.props.navigation}
+          />
+          <Discover
+            data={'pengajian ustad abdul somad'}
+            title="Trending"
+            navigation={this.props.navigation}
+          />
+          <Discover
+            data={'pengajian ustadz adi hidayat'}
+            title="Trending"
+            navigation={this.props.navigation}
+          />
         </ScrollView>
       </SafeAreaView>
     );

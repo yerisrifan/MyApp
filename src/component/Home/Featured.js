@@ -79,7 +79,6 @@ const Featured = () => {
   return (
     <Layout style={styles.container}>
       <Carousel
-        ref={c => (_sliderRef = c)}
         sliderWidth={screenWidth}
         sliderHeight={screenWidth}
         itemWidth={screenWidth - 60}

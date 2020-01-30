@@ -37,7 +37,7 @@ class HomeDetail extends Component {
 
   getInfo = async () => {
     const videoId = await this.props.navigation.getParam('videoId', 'No-ID');
-    const url = 'https://app-backendyt1991.herokuapp.com/info/' + videoId;
+    const url = 'http://app-backendyt1991.herokuapp.com/info/' + videoId;
     const getinfo = await axios.get(url);
     const detail = await getinfo.data.info.player_response.videoDetails;
     this.setState({

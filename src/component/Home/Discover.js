@@ -1,58 +1,8 @@
 import React, {Component} from 'react';
 import {ScrollView, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Layout, Text, Card} from '@ui-kitten/components';
-import axios from 'axios';
+import {toBackend} from '../../constant/connectBackend';
 
-const DiscoverData = [
-  {
-    albumId: 1,
-    id: 1,
-    title: 'Black Swan',
-    artist: 'BTS',
-    url: 'https://via.placeholder.com/600/92c952',
-    thumbnailUrl: 'https://via.placeholder.com/150/92c952',
-  },
-  {
-    albumId: 1,
-    id: 2,
-    title: 'Signed, Sealed, Delivered',
-    artist: 'Sly & The Family Stone',
-    url: 'https://via.placeholder.com/600/771796',
-    thumbnailUrl: 'https://via.placeholder.com/150/771796',
-  },
-  {
-    albumId: 1,
-    id: 3,
-    title: 'I ll Be Around',
-    artist: 'Sam Cooke',
-    url: 'https://via.placeholder.com/600/24f355',
-    thumbnailUrl: 'https://via.placeholder.com/150/24f355',
-  },
-  {
-    albumId: 1,
-    id: 4,
-    title: 'Lady Marmalade',
-    artist: 'Aretha Franklin',
-    url: 'https://via.placeholder.com/600/d32776',
-    thumbnailUrl: 'https://via.placeholder.com/150/d32776',
-  },
-  {
-    albumId: 1,
-    id: 5,
-    title: 'My Girl',
-    artist: 'Sam & Dave',
-    url: 'https://via.placeholder.com/600/f66b97',
-    thumbnailUrl: 'https://via.placeholder.com/150/f66b97',
-  },
-  {
-    albumId: 1,
-    id: 6,
-    title: 'A Change Is Gonna Come',
-    artist: 'Ray Charles',
-    url: 'https://via.placeholder.com/600/56a8c2',
-    thumbnailUrl: 'https://via.placeholder.com/150/56a8c2',
-  },
-];
 class Discover extends Component {
   constructor() {
     super();
@@ -64,13 +14,14 @@ class Discover extends Component {
   componentDidMount() {
     this.getData();
   }
-  getData = async () => {
+  getData = () => {
     const willSearch = this.props.data;
     if (willSearch) {
-      const base = 'https://app-backendyt1991.herokuapp.com/search/';
-      const get = await axios.get(base + willSearch);
-      this.setState({
-        audioData: get.data.items,
+      console.log('/search/' + willSearch);
+      toBackend('/search/' + willSearch).then(res => {
+        this.setState({
+          audioData: res.data.items,
+        });
       });
     }
   };

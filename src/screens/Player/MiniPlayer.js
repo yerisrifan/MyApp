@@ -30,7 +30,7 @@ class MiniPlayer extends Component {
     const video = this.props.isChanging ? null : (
       <Video
         source={{
-          uri: this.props.audioData.url,
+          uri: this.props.audioData.streamUrl,
         }} // Can be a URL or a local file.
         onLoadStart={this.loadStart}
         onEnd={this.onEnd} // Callback when playback finishes

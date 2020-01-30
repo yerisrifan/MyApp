@@ -14,7 +14,7 @@ class HomeScreen extends Component {
           {/* <Featured /> */}
           <Discover
             title="Discover"
-            data={'BTS'}
+            data={'bts boy with'}
             navigation={this.props.navigation}
           />
           <Discover

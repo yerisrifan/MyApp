@@ -24,7 +24,7 @@ export function changeNow(payload) {
 }
 
 export async function getAudioData(videoid) {
-  const base = 'https://app-backendyt1991.herokuapp.com/audio/' + videoid;
+  const base = 'http://localhost:5000/api/audio/' + videoid;
   const getData = await axios.get(base);
   const get = await getData.data;
   return get;

@@ -8,6 +8,7 @@ const initialState = {
   audioData: {
     title: 'KH ANWAR ZAHID TERBARU 2020  KRANGGAN MALANG lucu poll',
     author: 'MUNILUQ STORY',
+    streamUrl: 'http://localhost:5000/api/audio/XsX3ATc3FbA/stream',
     poster:
       'https://i.ytimg.com/vi/oPr_fiukArQ/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLDNww9XNn9w0JftBLgjijYhpgALlg',
     url:
